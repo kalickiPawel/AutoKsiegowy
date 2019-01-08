@@ -1,3 +1,28 @@
-<p>
-  lista-wydatkow works!
-</p>
+<h2>Lista wydatków</h2>
+
+<table class="table">
+  <tr>
+      <th>Kategoria</th>
+      <th>Data</th>
+      <th>Kwota</th>
+      <th>Opis</th>
+      <th>Ilość litrów / Ilość km</th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let wydatek of wydatki">
+    <td>{{wydatek.kategoria}}</td>
+    <td>{{wydatek.data | date:'dd.MM.yyyy'}}</td>
+    <td class="text-sm-right">{{wydatek.kwota | number:'1.2-2'}} zł</td>
+    <td>{{wydatek.opis}}</td>
+    <td>
+      <div *ngIf="wydatek.kategoria=='Tankowanie'">
+        <span *ngIf="wydatek.ileLitrow">{{wydatek.ileLitrow | number:'2.0-1'}} l</span>
+        <span *ngIf="wydatek.ileLitrow && wydatek.ileKm"> / </span>
+        <span *ngIf="wydatek.ileKm">{{wydatek.ileKm}} km</span>
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="usunWydatek( wydatek.id )">Usuń</button>
+    </td>
+  </tr>
+</table>

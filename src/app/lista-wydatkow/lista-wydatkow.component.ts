@@ -1,4 +1,7 @@
+import { Wydatek } from './../wydatek';
+import { WydatkiService } from './../wydatki.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-lista-wydatkow',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaWydatkowComponent implements OnInit {
 
-  constructor() { }
+  wydatki: Wydatek[];
+
+  constructor(private wydatkiService: WydatkiService) { }
 
   ngOnInit() {
+    this.wydatki = this.wydatkiService.getWydatki();
   }
-
+  usunWydatek( id: number ) {
+    this.wydatkiService.usunWydatek(id);
+  }
 }
