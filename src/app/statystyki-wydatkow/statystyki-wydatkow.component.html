@@ -1,13 +1,13 @@
 <p>
-  Łączna kwota wszystkich wydatków: {{ sumaWydatkow }}
+  Łączna kwota wszystkich wydatków: {{ sumaWydatkow | number: '1.2-2'}}
 </p>
 
-<table>
-  <tr *ngFor="let kategoria of kategorieWydatkow" >
+<table class="table">
+  <tbody>
+    <tr *ngFor="let kategoria of kategorieWydatkow; let i = index;">
       <td>{{ kategoria }}</td>
-  </tr>
-  <tr *ngFor="let wydatki of sumaWydatkowKategoria">
-    <td>{{ wydatki }}</td>
-  </tr>
+      <td>{{ sumaWydatkowKategoria[i] | number: '1.2-2' }}</td>
+    </tr>
+  </tbody>
 </table>
 
