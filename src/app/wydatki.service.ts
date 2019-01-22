@@ -4,21 +4,8 @@ import { Wydatek, KATEGORIE } from './wydatek';
 @Injectable()
 export class WydatkiService {
 
-  /*
-  private wydatki: AngularFireList<Wydatek>;
-  constructor(private db: AngularFireDatabase){
-    this.wydatki = this.db.list<Wydatek>('/wydatki');
-  }
-  getWydatki(): Overable<Wydatek[]>{
-    return this.wydatki.valueChanges();
-  }
-  */
-
   private wydatki: Wydatek[];
   private nextId: number;
-  private sum: number;
-  private sumByCategory: number[];
-  private categoryList: String[];
 
   constructor() {
     this.wydatki = [
@@ -33,28 +20,27 @@ export class WydatkiService {
   }
 
   getSum() {
-    this.sum = 0;
-    for (let i = 0; i < this.wydatki.length; i++) {
-      this.sum += this.wydatki[i].kwota;
-    }
-    return this.sum;
+    let sum = 0;
+    this.wydatki.forEach(item => { sum += item.kwota; });
+    return parseFloat(sum.toFixed(2));
   }
 
   getSumByCategory() {
-    this.categoryList = KATEGORIE;
-    /*
-    this.categoryList.forEach(kategoria -> {})
-    */
-
-    for (let i = 0; i < this.wydatki.length; i++) {
-      for (let j = 0; j < this.categoryList.length; j++) {
-        // tslint:disable-next-line:triple-equals
-        if (this.categoryList[j] == this.wydatki[i].kategoria) {
-          this.sumByCategory[j] += this.wydatki[i].kwota;
+    const categoryList = this.getKategorie();
+    const sumByCategory = [0.0, 0.0, 0.0, 0.0];
+    for (let j = 0; j < categoryList.length; j++) {
+      this.wydatki.forEach(item => {
+        if (item.kategoria === categoryList[j]) {
+          sumByCategory[j] += item.kwota;
         }
-      }
+      });
     }
-    return this.sumByCategory;
+
+    console.log(categoryList.length);
+    console.log(typeof(sumByCategory));
+    console.log(typeof(this.wydatki[1].kwota));
+
+    return sumByCategory;
   }
 
   getWydatki() {

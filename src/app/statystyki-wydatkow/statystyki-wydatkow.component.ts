@@ -1,4 +1,4 @@
-import { Wydatek } from './../wydatek';
+import { Wydatek, KATEGORIE } from './../wydatek';
 import { WydatkiService } from './../wydatki.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statystyki-wydatkow.component.css']
 })
 export class StatystykiWydatkowComponent implements OnInit {
+
   sumaWydatkow: number;
   sumaWydatkowKategoria: number[];
+  kategorieWydatkow: String[];
   wydatki: Wydatek[];
 
   constructor(private wydatkiService: WydatkiService) { }
@@ -17,5 +19,6 @@ export class StatystykiWydatkowComponent implements OnInit {
   ngOnInit() {
     this.sumaWydatkow = this.wydatkiService.getSum();
     this.sumaWydatkowKategoria = this.wydatkiService.getSumByCategory();
+    this.kategorieWydatkow = this.wydatkiService.getKategorie();
   }
 }

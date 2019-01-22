@@ -1,6 +1,13 @@
 <p>
   Łączna kwota wszystkich wydatków: {{ sumaWydatkow }}
 </p>
-<p *ngFor="let k of sumaWydatkowKategoria">
-  {{k}}
-</p>
+
+<table>
+  <tr *ngFor="let kategoria of kategorieWydatkow" >
+      <td>{{ kategoria }}</td>
+  </tr>
+  <tr *ngFor="let wydatki of sumaWydatkowKategoria">
+    <td>{{ wydatki }}</td>
+  </tr>
+</table>
+
