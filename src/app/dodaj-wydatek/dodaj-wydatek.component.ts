@@ -21,6 +21,7 @@ export class DodajWydatekComponent implements OnInit {
   }
 
   onSubmit() {
+    this.nowyWydatek.data = new Date(this.nowyWydatek.data);
     this.wydatkiService.dodajWydatek(this.nowyWydatek);
     this.nowyWydatek = new Wydatek(null, 'Tankowanie', null, null, null);
     this.router.navigate(['/wydatki']);

@@ -1,13 +1,33 @@
-<p>
-  Łączna kwota wszystkich wydatków: {{ sumaWydatkow | number: '1.2-2'}}
-</p>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn" [ngClass]="{'btn-success': whatGroup == 'full'}" (click)="changeStatus('full')">Pełne</button>
+  <button type="button" class="btn" [ngClass]="{'btn-success': whatGroup == 'current'}" (click)="changeStatus('current')">Bieżące</button>
+</div>
 
-<table class="table">
-  <tbody>
-    <tr *ngFor="let kategoria of kategorieWydatkow; let i = index;">
-      <td>{{ kategoria }}</td>
-      <td>{{ sumaWydatkowKategoria[i] | number: '1.2-2' }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="whatGroup == 'full'">
+  <p>
+    Łączna kwota wszystkich wydatków: {{ sumaWydatkow | number: '1.2-2'}}
+  </p>
 
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let kategoria of kategorieWydatkow; let i = index;">
+        <td>{{ kategoria }}</td>
+        <td>{{ sumaWydatkowKategoria[i] | number: '1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="whatGroup == 'current'">
+  <p>
+    Łączna kwota wszystkich wydatków w bieżącym miesiącu: {{ currentSum | number: '1.2-2'}}
+  </p>
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let wydatek of biezaceWydatki; let i = index;">
+        <td>{{ wydatek.kategoria }}</td>
+        <td>{{ wydatek.kwota | number: '1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
