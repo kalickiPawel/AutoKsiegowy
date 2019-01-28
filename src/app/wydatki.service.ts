@@ -67,16 +67,17 @@ export class WydatkiService {
   }
 
   usunKategorie(kategoria: string) {
-    this.wydatki.forEach((item) => {
-      if (item.kategoria === kategoria) {
+    for (let i = 0; i < this.wydatki.length; i++) {
+      if (this.wydatki[i].kategoria === kategoria) {
         alert('Kategoria jest przypisana do wydatku');
-        return;
+        return false;
       }
-    });
+    }
 
-    KATEGORIE.filter((item) => {
-      return item !== kategoria;
-    });
+    const index = KATEGORIE.indexOf(kategoria);
+    if (index > -1) {
+      KATEGORIE.splice(index, 1);
+    }
 
   }
 }
