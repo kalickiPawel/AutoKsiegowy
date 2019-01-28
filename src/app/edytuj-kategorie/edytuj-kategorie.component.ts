@@ -18,11 +18,13 @@ export class EdytujKategorieComponent implements OnInit {
   ngOnInit() {
     this.kategorie = this.wydatkiService.getKategorie();
   }
-  dodajKategorie(kategoria: string) {
-    KATEGORIE.push(kategoria);
+
+  dodajKategorie(kategoria: HTMLInputElement) {
+    this.wydatkiService.dodajKategorie(kategoria);
   }
+
   usunKategorie(kategoria: string) {
-    KATEGORIE.filter(function(ele) { return ele !== kategoria;
-    });
+    this.wydatkiService.usunKategorie(kategoria);
+    this.kategorie = this.wydatkiService.getKategorie();
   }
 }

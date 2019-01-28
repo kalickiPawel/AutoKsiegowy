@@ -60,4 +60,23 @@ export class WydatkiService {
     const ind = this.wydatki.findIndex(wydatek => wydatek.id === id);
     this.wydatki.splice(ind, 1);
   }
+
+  dodajKategorie(kategoria: HTMLInputElement) {
+    KATEGORIE.push(kategoria.value);
+    kategoria.value = '';
+  }
+
+  usunKategorie(kategoria: string) {
+    this.wydatki.forEach((item) => {
+      if (item.kategoria === kategoria) {
+        alert('Kategoria jest przypisana do wydatku');
+        return;
+      }
+    });
+
+    KATEGORIE.filter((item) => {
+      return item !== kategoria;
+    });
+
+  }
 }

@@ -4,10 +4,10 @@
     <div class="row">
       <div class="form-group" >
         <label>Podaj nazwę:</label>
-        <input class="form-control" #kategoria type="text" required>
+        <input class="form-control" #addCategory type="text" required>
       </div>
     </div>
-    <button class="btn btn-primary" (click)="dodajKategorie(kategoria)">Dodaj</button>
+    <button class="btn btn-primary" (click)="dodajKategorie(addCategory)">Dodaj</button>
   </form>
 </div>
 
@@ -17,12 +17,12 @@
     <div class="row">
       <div class="form-group">
         <label>Wybierz kategorię:</label>
-        <select class="form-control" #kategoria>
+        <select class="form-control" #removeCategory>
             <option *ngFor="let k of kategorie">{{k}}</option>
         </select>
       </div>
     </div>
-    <button class="btn btn-danger" (click)="usunKategorie(kategoria)">Usuń</button>
+    <button class="btn btn-danger" (click)="usunKategorie(removeCategory.value)">Usuń</button>
   </form>
 </div>
 
