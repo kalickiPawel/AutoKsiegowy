@@ -1,0 +1,28 @@
+<div style="width: 40%; float: left;">
+  <h3>Dodaj kategorię</h3>
+  <form style="margin-left: 20px">
+    <div class="row">
+      <div class="form-group">
+        <label>Podaj nazwę:</label>
+        <input class="form-control" name="kategoria" type="text" required>
+      </div>
+    </div>
+    <button class="btn btn-primary">Dodaj</button>
+  </form>
+</div>
+
+<div style="width: 40%; float: left;">
+  <h3>Usuń kategorię</h3>
+  <form style="margin-left: 20px">
+    <div class="row">
+      <div class="form-group">
+        <label>Wybierz kategorię:</label>
+        <select class="form-control" name="kategoria">
+            <option *ngFor="let k of kategorie">{{k}}</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-danger">Usuń</button>
+  </form>
+</div>
+
